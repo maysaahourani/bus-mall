@@ -54,7 +54,6 @@ console.log ( Item.all );
 function randomNumber( min, max ) {
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
-//const clickcounter=25;
 //render function to render left/right/center images in the image section
 function render (){
   let leftIndex = randomNumber ( 0,Item.all.length - 1 );//to render random object from the item.all array generate random number within item.all array lenght and give it to leftindex
@@ -83,18 +82,18 @@ function render (){
   Item.all[centerIndex].shown++;//counter for images when it has shown (when calling its object)
 
   //this part for rendering the results only ( view results button)
-//   const parentElement = document.getElementById ( 'result' );
-//   const articleElement = document.createElement ( 'article' );
-//   const h1Element = document.createElement ( 'h1' );
-//   parentElement.appendChild ( articleElement );
-//   parentElement.appendChild( h1Element );
-//   const pElement = document.createElement ( 'p' );
-//   articleElement.appendChild( pElement );
-//   for ( let i = 0 ; i <= clickCounter ; i++ ){
-//     const pElement = document.createElement ( 'p' );
-//     articleElement.appendChild( pElement );
-//     pElement.textContent = `${Item.all[i].name} has ${Item.all[i].shown} shown and ${Item.all[i].clicks} clicks.`;
-//   }
+  const parentElement = document.getElementById ( 'result' );
+  const articleElement = document.createElement ( 'article' );
+  const h1Element = document.createElement ( 'h1' );
+  parentElement.appendChild ( articleElement );
+  parentElement.appendChild( h1Element );
+  const pElement = document.createElement ( 'p' );
+  articleElement.appendChild( pElement );
+  for ( let i = 0 ; i <= clickCounter ; i++ ){
+    const pElement = document.createElement ( 'p' );
+    articleElement.appendChild( pElement );
+    pElement.textContent = `${Item.all[i].name} had ${Item.all[i].clicks} votes, and was seen ${Item.all[i].shown} times`;
+  }
 }
 function handelClick( event ) {
   if( Item.counter <= clickCounter ) {
