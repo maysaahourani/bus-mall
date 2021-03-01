@@ -118,6 +118,4 @@ function handelClick( event ) {
 imageSection.addEventListener( 'click', handelClick );
 console.log ( Item.all ) ;
 render ();
-console.log ( Item.all[10].shown ) ;
-console.log ( Item.all[10].clicks ) ;
 
