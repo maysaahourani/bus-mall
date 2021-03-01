@@ -130,7 +130,7 @@ function getResult() {
 
   button.removeEventListener( 'click', getResult );
   button.textContent = 'Reset';
-  button.onclick = function( event ) {
+  button.onclick = function( ) {
     location.reload();
   };
 }
