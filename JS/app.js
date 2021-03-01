@@ -119,3 +119,10 @@ imageSection.addEventListener( 'click', handelClick );
 console.log ( Item.all ) ;
 render ();
 
+let pugbombButton = document.getElementById ( 'pugbomb' );
+pugbombButton.addEventListener ( 'click', pugbombButtonHandler() );
+
+function pugbombButtonHandler() {
+  alert ( 'PUGBOMB!!!!' );
+}
+
