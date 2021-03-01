@@ -27,6 +27,7 @@ const imageSection = document.getElementById ( 'imageSection' );
 const lefSec = document.getElementById ( 'leftImage' );
 const rigSec = document.getElementById ( 'rightImage' );
 const cenSec = document.getElementById ( 'centerImage' );
+const button = document.getElementById( 'res' );
 
 let leftItemIndex = 0 ;
 let rightItemIndex = 0;
@@ -34,9 +35,9 @@ let centerItemIndex = 0;
 const clickCounter = 25;//max num of clicks
 // const image
 //build a constructor
-function Item( name ){
+function Item( name, img ){
   this.name = name ;
-  this.img = `./img/${name}`;
+  this.img = `./img/${img}`;
   this.clicks = 0;
   this.shown = 0;
   Item.all.push( this );
@@ -47,8 +48,13 @@ Item.counter = 0 ;
 //from that array like itemArray[1]='banana' --->> so new Item (banana)----> this will build an object from the contructor
 // it so we will have object (name/img/pushed to itemall) lets check this by console
 for ( let i = 0 ; i < itemArray.length ;i++ ){
-  new Item ( itemArray[i] );
+  new Item ( getName( itemArray[i] ) ,itemArray[i] );
 }
+
+function getName( fileName ) {
+  return fileName.split( '.' ).slice( 0, -1 ).join( '.' );
+}
+
 console.log ( Item.all );
 // Helper function
 function randomNumber( min, max ) {
@@ -80,20 +86,6 @@ function render (){
   Item.all[leftIndex].shown++;//counter for images when it has shown (when calling its object)
   Item.all[rightIndex].shown++;//counter for images when it has shown (when calling its object)
   Item.all[centerIndex].shown++;//counter for images when it has shown (when calling its object)
-
-  //this part for rendering the results only ( view results button)
-  const parentElement = document.getElementById ( 'result' );
-  const articleElement = document.createElement ( 'article' );
-  const h1Element = document.createElement ( 'h1' );
-  parentElement.appendChild ( articleElement );
-  parentElement.appendChild( h1Element );
-  const pElement = document.createElement ( 'p' );
-  articleElement.appendChild( pElement );
-  for ( let i = 0 ; i <= clickCounter ; i++ ){
-    const pElement = document.createElement ( 'p' );
-    articleElement.appendChild( pElement );
-    pElement.textContent = `${Item.all[i].name} had ${Item.all[i].clicks} votes, and was seen ${Item.all[i].shown} times`;
-  }
 }
 function handelClick( event ) {
   if( Item.counter <= clickCounter ) {
@@ -119,10 +111,26 @@ imageSection.addEventListener( 'click', handelClick );
 console.log ( Item.all ) ;
 render ();
 
-let pugbombButton = document.getElementById ( 'pugbomb' );
-pugbombButton.addEventListener ( 'click', pugbombButtonHandler() );
+button.addEventListener( 'click', getResult );
 
-function pugbombButtonHandler() {
-  alert ( 'PUGBOMB!!!!' );
+function getResult() {
+  //this part for rendering the results only ( view results button)
+  const parentElement = document.getElementById ( 'result' );
+  const articleElement = document.createElement ( 'article' );
+  // const h1Element = document.createElement ( 'h1' );
+  parentElement.appendChild ( articleElement );
+  // parentElement.appendChild( h1Element );
+  // const pElement = document.createElement ( 'p' );
+  // articleElement.appendChild( pElement );
+  for ( let i = 0 ; i < Item.all.length ; i++ ){
+    const pElement = document.createElement ( 'p' );
+    articleElement.appendChild( pElement );
+    pElement.textContent = `${Item.all[i].name} had ${Item.all[i].clicks} votes, and was seen ${Item.all[i].shown} times`;
+  }
+
+  button.removeEventListener( 'click', getResult );
+  button.textContent = 'Reset';
+  button.onclick = function( event ) {
+    location.reload();
+  };
 }
-
