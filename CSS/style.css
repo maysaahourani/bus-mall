@@ -1,4 +1,32 @@
-* main section img {
-    width: 450px;
+
+.image-section {
+    margin: 20px;
+    justify-self: center;
     
+}
+#rightImage{
+    width: 350px;
+    height: 300px;
+    margin-right: 50px;
+}
+#leftImage{
+    width: 350px;
+    height: 300px;
+    margin-right: 50px;
+}
+
+#centerImage{
+    width: 350px;
+    height: 300px;
+    margin-right: 50px;
+}
+header nav {
+    background-color: coral;
+    color: goldenrod;
+    font-size: xx-large;
+    justify-self: center;
+}
+
+body {
+    background-color: cyan;
 }
