@@ -58,15 +58,23 @@ function getName( fileName ) {
 console.log( Item.all );
 // Helper function
 function randomNumber( min, max ) {
-  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+  let index2 = Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+  for( let i = 0;i < ite1.length;i++ ){
+    if ( index2 === ite1[i] ){
+      index2 = Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+    }
+  }return( index2 );
 }
 //render function to render left/right/center images in the image section
+let ite1 = [] ;
 function render() {
+
   let leftIndex = randomNumber( 0, Item.all.length - 1 );//to render random object from the item.all array generate random number within item.all array lenght and give it to leftindex
   lefSec.src = Item.all[leftIndex].img;//(call item.all[randomNum]) and render its image
   lefSec.alt = Item.all[leftIndex].name;//if the image is broken print its name alternative
   leftItemIndex = leftIndex; // still dont know why we use it
   let rightIndex;
+  ite1.push ( leftIndex );
   do {
     rightIndex = randomNumber( 0, Item.all.length - 1 );
   } //geterte random num within item.all array lenght
@@ -75,6 +83,8 @@ function render() {
   rigSec.alt = Item.all[rightIndex].name;//render the image name if its broken alternative
   rightItemIndex = rightIndex;// still dont know why
   let centerIndex;
+  ite1.push ( rightIndex ) ;
+
   do {
     centerIndex = randomNumber( 0, Item.all.length - 1 );//generate random number within item.all array to generate random image
   }
@@ -82,6 +92,7 @@ function render() {
   cenSec.src = Item.all[centerIndex].img;//render the image
   cenSec.alt = Item.all[centerIndex].name;
   centerItemIndex = centerIndex;
+  ite1.push ( centerIndex ) ;
 
   Item.all[leftIndex].shown++;//counter for images when it has shown (when calling its object)
   Item.all[rightIndex].shown++;//counter for images when it has shown (when calling its object)
@@ -139,7 +150,6 @@ function getResult() {
   };
 }
 // creating a chart in java script
-
 function renderChart() {
 
   let nameArray = [];
@@ -185,3 +195,6 @@ function renderChart() {
     }
   } ) ;
 }
+
+
+
